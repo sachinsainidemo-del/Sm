@@ -1,0 +1,301 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Unspoken Truth | #SAM1803</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;700;800;900&family=Birthstone&display=swap');
+
+        :root {
+            --hot-pink: #ff1493;
+            --dark-base: #0f0f0f;
+        }
+
+        body {
+            background: #ffffff;
+            font-family: 'Lora', serif;
+            color: #1a1a1a;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* --- OVERLAYS --- */
+        .vignette {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            box-shadow: inset 0 0 150px rgba(0,0,0,0.1);
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .grain {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 99;
+        }
+
+        /* --- ENVELOPE STEP 1 --- */
+        #envelope-stage {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #f8fafc;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 1.2s cubic-bezier(0.87, 0, 0.13, 1);
+        }
+
+        .envelope {
+            width: 320px;
+            padding: 40px;
+            background: white;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            position: relative;
+        }
+
+        .open-btn {
+            background: var(--hot-pink);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            letter-spacing: 4px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.3);
+            transition: 0.4s;
+            text-transform: uppercase;
+        }
+
+        /* --- LETTER CONTENT --- */
+        .letter-paper {
+            max-width: 850px;
+            margin: 60px auto;
+            background: white;
+            padding: 100px 60px;
+            box-shadow: 0 10px 60px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            line-height: 1;
+            text-align: center;
+        }
+
+        .handwritten {
+            font-family: 'Dancing Script', cursive;
+            color: var(--hot-pink);
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .premium-highlight {
+            background: linear-gradient(120deg, rgba(255, 20, 147, 0.1) 0%, rgba(255, 20, 147, 0) 100%);
+            border-left: 4px solid var(--hot-pink);
+            padding: 20px 30px;
+            margin: 40px 0;
+            font-style: italic;
+        }
+
+        /* --- ADVANCED BOXES (THOSE 6 STEPS) --- */
+        .aiims-report {
+            background: #fff1f2;
+            border: 1px dashed var(--hot-pink);
+            padding: 40px;
+            margin: 60px 0;
+            position: relative;
+        }
+
+        .aiims-tag {
+            position: absolute;
+            top: -12px; left: 20px;
+            background: var(--hot-pink);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 2px 12px;
+            text-transform: uppercase;
+        }
+
+        .polaroid-frame {
+            background: white;
+            padding: 15px 15px 50px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            transform: rotate(-2deg);
+            max-width: 350px;
+            margin: 60px auto;
+            border: 1px solid #f1f1f1;
+        }
+
+        .bullet-ride-section {
+            background: #111;
+            color: #eee;
+            padding: 50px 30px;
+            text-align: center;
+            margin: 60px 0;
+            font-style: italic;
+            border-radius: 4px;
+        }
+
+        .unbelievable-box {
+            background: #000;
+            color: #fff;
+            padding: 80px 40px;
+            text-align: center;
+            margin-top: 80px;
+            box-shadow: 0 0 60px rgba(255, 20, 147, 0.4);
+        }
+
+        .signature {
+            font-family: 'Birthstone', cursive;
+            font-size: 5.5rem;
+            line-height: 0.8;
+            margin-top: 20px;
+        }
+
+        /* --- DECORATIONS --- */
+        .petal {
+            position: fixed;
+            background: #ffd1dc;
+            border-radius: 150% 0 150% 0;
+            opacity: 0.3;
+            animation: fall 10s linear infinite;
+            z-index: 5;
+            pointer-events: none;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); }
+            100% { transform: translateY(110vh) rotate(360deg); }
+        }
+
+        @media (max-width: 640px) {
+            .letter-paper { padding: 50px 20px; }
+            .header-title { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="vignette"></div>
+    <div class="grain"></div>
+    <div id="petal-box"></div>
+
+    <!-- STEP 1: THE ENVELOPE -->
+    <div id="envelope-stage">
+        <div class="envelope">
+            <p class="text-xs font-black tracking-widest text-gray-400 mb-6 uppercase">Confidential Gift #SAM1803</p>
+            <button class="open-btn" onclick="openLetter()">Open Truth</button>
+            <p class="mt-6 font-bold text-gray-700 italic">For Sonam Rajput</p>
+        </div>
+    </div>
+
+    <!-- THE REAL LEGACY CONTENT -->
+    <div id="main-content" class="letter-paper hidden">
+        <header class="mb-20">
+            <p class="text-center text-[10px] uppercase tracking-[5px] text-gray-400 mb-4 font-bold">The Unspoken Truth • Private Archive</p>
+            <h1 class="header-title">The Final Legacy</h1>
+            <div class="flex justify-center mt-4">
+                <div class="h-px w-20 bg-pink-500"></div>
+            </div>
+        </header>
+
+        <section class="text-xl leading-relaxed">
+            <div class="handwritten">Hey Sonam Bacha 🌸</div>
+            
+            <p class="mb-8">
+                Hope you are doing well. <span class="premium-highlight">This is the final gift from my side 😭.</span> Yaar, 18 March... woh din jab maine tumhe pehli baar dekha tha, Jean kurti aur punjabi jutti mein. Woh restaurant, woh 'Spice' aur hamari woh 'Joy'... sab kuch mere zehen mein aaj bhi taaza hai.
+            </p>
+
+            <!-- STEP 2: THE AIIMS TRUTH -->
+            <div class="aiims-report">
+                <div class="aiims-tag">Medical Disclosure</div>
+                <p class="italic text-gray-800">
+                    "Sach ye hai Sonam, ki main pichle kaafi waqt se <strong>AIIMS (Psychiatric Department)</strong> se treatment le raha hoon. OCD aur Depression ne meri neendein chheen li thi. Maine ye tumse chupaya, sirf isliye kyunki main hamare beech ki khushiyon ko kam nahi karna chahta tha."
+                </p>
+                <p class="mt-4 text-sm font-bold text-pink-600 uppercase tracking-widest">— The Unspoken Truth ☺️😊</p>
+            </div>
+
+            <p class="mb-8">
+                Yaad hai woh surprise? Tricky sawal pooch-pooch ke tumhari finger ka size liya tha. Jab woh ring boxes khule aur tumne blushing ki... <span class="font-bold underline">You are a Queen 👑</span> who deserves a king.
+            </p>
+
+            <!-- STEP 3: POLAROID MEMORY -->
+            <div class="polaroid-frame">
+                <img src="https://i.ibb.co/MyC98Nk5/IMG-3263.jpg" alt="Our Memory" class="w-full grayscale hover:grayscale-0 transition-all duration-700">
+                <div class="text-center mt-6 font-serif italic text-gray-600 font-bold">"The Moment of Us 💍"</div>
+            </div>
+
+            <!-- STEP 4: THE BULLET RIDE -->
+            <div class="bullet-ride-section">
+                <p class="text-2xl">
+                    "Woh aakhri Bullet ride... jab maine tumhe drop kiya tha. Maine bike bahut tez chalayi thi taaki hawa mere aansu uda le jaye. Woh hamara aakhri safar tha, aur mujhe pata tha ki hum ab kabhi nahi milenge."
+                </p>
+                <div class="mt-4 text-[10px] uppercase tracking-widest opacity-50">The Last Goodbye 🏍️</div>
+            </div>
+
+            <p class="mb-8">
+                Confident rehna Sonam. College mein bure logon se door rehna. Apna mental aur physical dhyan rakhna. Main tumhe tumse zyada jaanta hoon, isliye bas fikar hoti hai.
+            </p>
+
+            <!-- STEP 5 & 6: UNBELIEVABLE ENDING -->
+            <div class="unbelievable-box">
+                <h2 class="font-black text-4xl mb-6 tracking-tighter">UNBELIEVABLE ENDING</h2>
+                <p class="text-3xl italic font-serif mb-10 leading-snug">
+                    "KAASH HAMMMILE HI NA HOTE 💔🥺🥀"
+                </p>
+                <div class="inline-block border-2 border-pink-500 px-8 py-3 transform rotate-[-2deg] font-black text-pink-500 text-sm">
+                    FINAL CHAPTER CLOSED #SAM1803
+                </div>
+                <p class="mt-12 text-[10px] opacity-40 uppercase tracking-widest font-bold">Well care my love - Sonam Rajput</p>
+            </div>
+
+            <!-- FINAL SIGNATURE -->
+            <div class="mt-24 text-right">
+                <p class="text-[10px] uppercase tracking-[4px] text-gray-400 mb-2">Final Archive Signed By</p>
+                <div class="signature">Rohin Singh Saini</div>
+                <p class="italic text-gray-400 mt-2">Always with you... in memories.</p>
+                <p class="mt-10 text-[10px] font-black text-gray-300 uppercase">There is where I stop now... 🫡</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function openLetter() {
+            document.getElementById('envelope-stage').style.transform = 'translateY(-100%)';
+            setTimeout(() => {
+                document.getElementById('main-content').style.display = 'block';
+                setInterval(createPetal, 500);
+            }, 600);
+        }
+
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.width = Math.random() * 15 + 10 + 'px';
+            petal.style.height = petal.style.width;
+            petal.style.animationDuration = Math.random() * 5 + 5 + 's';
+            document.getElementById('petal-box').appendChild(petal);
+            setTimeout(() => petal.remove(), 10000);
+        }
+    </script>
+</body>
+</html>
+
+```
